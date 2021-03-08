@@ -5,7 +5,7 @@ from quoteProvider import Provider
 from datetime import datetime
 from csv import DictReader
 
-class YahooFinance(Provider):
+class YahooFinanceAPI(Provider):
     @staticmethod
     def __encode(symbolOrNames):
         if isinstance(symbolOrNames, list):
