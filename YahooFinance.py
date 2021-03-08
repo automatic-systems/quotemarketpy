@@ -24,7 +24,8 @@ class YahooFinance(Provider):
                 Low= res['regularMarketDayLow']
                 Adj= res['regularMarketAdjustedClose'] if 'regularMarketAdjustedClose' in res else Close
                 Volume=res['regularMarketVolume']
-                return {'Date':Date,'Open':Open,'High':High,'Low':Low,'Close':Close,'Adj Close':Adj,'Volume':Volume}
+                Symbol= res['symbol']
+                return {'Symbol':Symbol,'Date':Date,'Open':Open,'High':High,'Low':Low,'Close':Close,'Adj Close':Adj,'Volume':Volume}
         return [select(result) for result in results]
 
     def verifySymbol(self, symbolOrNames):
@@ -34,11 +35,6 @@ class YahooFinance(Provider):
         inter=[csv.split('\n') for csv in self.getQuoteHistoryResponse(symbol,p1,p2)]
         return [DictReader(csv) for csv in inter]
     def getQuoteHistoryResponse(self, symbol, p1=1583005374, p2=None):
-        '''
-            symbol: entity symbol or list of entity symbols
-            p1: lower limit of date, from which data needs to be collected
-            p2: upper limit, leave Noneish to draw data for a single day, i.e on p1
-        '''
         if not p2:
             p2 = p1
         symbols = self.verifySymbol(symbol)

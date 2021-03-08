@@ -15,7 +15,7 @@ class Provider(metaclass=ABCMeta):
     def getQuoteLatest(self,symbolsorNames):
         '''
             symbolOrName: symbol or name of the entity, or a list of symbol or name
-            returns-> dictonary  {symbol,{Date,Open,High,Low,Close,Adj Close,Volume}} for latest date
+            returns-> returns list of dictionary {symbol,Date,Open,High,Low,Close,Adj Close,Volume}
         '''
         pass
     
@@ -23,6 +23,6 @@ class Provider(metaclass=ABCMeta):
     def getQuoteHistory(self,symbolsorNames,p1,p2):
         '''
             symbolOrName: symbol or name of the entity, or a list of symbol or name
-            returns-> list of csv string with columns (Date,Open,High,Low,Close,Adj Close,Volume)
+            returns-> returns list of (list of dictionary {symbol,Date,Open,High,Low,Close,Adj Close,Volume})
         '''
         pass
